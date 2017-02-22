@@ -1,0 +1,31 @@
+{
+  "name": "rodan-client-wfbgui",
+  "version": "0.1.0",
+  "description": "Rodan Client Workflow Builder GUI",
+  "keywords": [
+    "workflow",
+    "music",
+    "mcgill",
+    "rodan"
+  ],
+  "bugs": {
+    "url": "https://github.com/DDMAL/rodan-client-wfbgui/issues"
+  },
+  "scripts": {},
+  "author": {
+    "name": "Distributed Digital Music Archives & Library Laboratory",
+    "url": "http://ddmal.music.mcgill.ca/"
+  },
+  "main": "src/entry.js",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DDMAL/rodan-client-wfbgui"
+  },
+  "dependencies": {
+    "backbone.marionette": "^2.4.7",
+    "backbone.radio": "^2.0.0",
+    "jquery": "^3.1.1",
+    "paper": "^0.10.2"
+  }
+}
