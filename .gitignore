@@ -6,3 +6,4 @@ dist
 web
 ._*
 __*
+*.tgz

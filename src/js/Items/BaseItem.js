@@ -207,7 +207,7 @@ class BaseItem extends paper.Path
         // Create query.
         var query = {};
         query[this.coordinateSetInfo['url']] = this._modelId;
-        query['user_agent'] = Rodan.Configuration.PLUGINS['rodan-client-wfb'].USER_AGENT;
+        query['user_agent'] = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].USER_AGENT;
 
         // Create callback.
         var callback = (coordinates) => this._handleCoordinateLoadSuccess(coordinates);
@@ -216,7 +216,7 @@ class BaseItem extends paper.Path
         var name = this.coordinateSetInfo['class'];
         var options = {};
         options[this.coordinateSetInfo['url']] = this._modelURL;
-        options['user_agent'] = Rodan.Configuration.PLUGINS['rodan-client-wfb'].USER_AGENT;
+        options['user_agent'] = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].USER_AGENT;
         this._coordinateSetModel = new name(options);
         this._coordinateSetModel.fetch({data: query, success: callback, error: callback});
     }
@@ -242,8 +242,8 @@ class BaseItem extends paper.Path
      */
     setHighlight(highlighted)
     {
-        this.strokeColor = highlighted ? Rodan.Configuration.PLUGINS['rodan-client-wfb'].STROKE_COLOR_SELECTED : Rodan.Configuration.PLUGINS['rodan-client-wfb'].STROKE_COLOR;
-        this.strokeWidth = highlighted ? Rodan.Configuration.PLUGINS['rodan-client-wfb'].STROKE_WIDTH_SELECTED : Rodan.Configuration.PLUGINS['rodan-client-wfb'].STROKE_WIDTH;
+        this.strokeColor = highlighted ? Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].STROKE_COLOR_SELECTED : Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].STROKE_COLOR;
+        this.strokeWidth = highlighted ? Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].STROKE_WIDTH_SELECTED : Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].STROKE_WIDTH;
     }
 
     /**
@@ -337,10 +337,10 @@ class BaseItem extends paper.Path
      */
     _initializeAppearance(options)
     {
-        this.strokeColor = Rodan.Configuration.PLUGINS['rodan-client-wfb'].STROKE_COLOR;
+        this.strokeColor = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].STROKE_COLOR;
         this.strokeJoin = 'round';
-        this.strokeWidth = Rodan.Configuration.PLUGINS['rodan-client-wfb'].STROKE_WIDTH;
-        this.fillColor = Rodan.Configuration.PLUGINS['rodan-client-wfb'].FILL_COLOR;
+        this.strokeWidth = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].STROKE_WIDTH;
+        this.fillColor = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].FILL_COLOR;
         this._temporaryColor = null;
     }
 
@@ -388,8 +388,8 @@ class BaseItem extends paper.Path
         this._useText = (options.hasOwnProperty('text') && options.text === true);
         this._text = new paper.PointText(new paper.Point(0, 0));
         this._text.justification = 'center';
-        this._text.fillColor = Rodan.Configuration.PLUGINS['rodan-client-wfb'].STROKE_COLOR;
-        this._text.fontSize = Rodan.Configuration.PLUGINS['rodan-client-wfb'].FONT_SIZE;
+        this._text.fillColor = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].STROKE_COLOR;
+        this._text.fontSize = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].FONT_SIZE;
         this._text.content = '';
         this._text.position = this.bounds.center;
         this.addChild(this._text);
@@ -466,7 +466,7 @@ class BaseItem extends paper.Path
         {
             case 'mouseenter':
             {
-                this._timerEvent = setTimeout(() => this._showPopup(event), Rodan.Configuration.PLUGINS['rodan-client-wfb'].HOVER_TIME);
+                this._timerEvent = setTimeout(() => this._showPopup(event), Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].HOVER_TIME);
                 paper.handleMouseEvent(event);
                 break;
             }
@@ -516,7 +516,7 @@ class BaseItem extends paper.Path
      */
     _handleMouseEnter(mouseEvent)
     {
-        this._timerEvent = setTimeout(() => this._showPopup(mouseEvent), Rodan.Configuration.PLUGINS['rodan-client-wfb'].HOVER_TIME);
+        this._timerEvent = setTimeout(() => this._showPopup(mouseEvent), Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].HOVER_TIME);
         paper.handleMouseEvent(mouseEvent);
     }
 

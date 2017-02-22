@@ -15,7 +15,7 @@ class OutputPortItem extends BasePortItem
     constructor(options)
     {
         super(options);
-        this.fillColor = Rodan.Configuration.PLUGINS['rodan-client-wfb'].OUTPUTPORT_COLOR;
+        this.fillColor = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].OUTPUTPORT_COLOR;
         this._connectionItems = [];
     }
 

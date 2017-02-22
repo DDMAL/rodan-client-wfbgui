@@ -28,7 +28,7 @@ class WorkflowJobGroupItem extends BaseWorkflowJobItem
         this.coordinateSetInfo['class'] = WorkflowJobGroupCoordinateSet;
         this.coordinateSetInfo['url'] = 'workflow_job_group';
         this.loadCoordinates();
-        this.fillColor = Rodan.Configuration.PLUGINS['rodan-client-wfb'].WORKFLOWJOBGROUP_FILL_COLOR;
+        this.fillColor = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].WORKFLOWJOBGROUP_FILL_COLOR;
         this._gotPorts = false;
     }
 

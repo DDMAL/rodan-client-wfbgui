@@ -76,8 +76,8 @@ class InputPortItem extends BasePortItem
         }
         else
         {
-            this.fillColor = this.isSatisfied() ? Rodan.Configuration.PLUGINS['rodan-client-wfb'].INPUTPORT_COLOR_SATISFIED : 
-                                                  Rodan.Configuration.PLUGINS['rodan-client-wfb'].INPUTPORT_COLOR_UNSATISFIED;
+            this.fillColor = this.isSatisfied() ? Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].INPUTPORT_COLOR_SATISFIED : 
+                                                  Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].INPUTPORT_COLOR_UNSATISFIED;
         }
         if (this._connectionItem !== null)
         {

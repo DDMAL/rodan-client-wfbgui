@@ -77,7 +77,7 @@ class WorkflowBuilderGUI
         BaseItem.clearMap();
         this._multipleSelectionKey = Rodan.Environment.getMultipleSelectionKey();
         this._line = null;
-        this._zoomRate = Rodan.Configuration.PLUGINS['rodan-client-wfb'].ZOOM_RATE;
+        this._zoomRate = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].ZOOM_RATE;
         this._itemController = new ItemController();
         paper.handleMouseEvent = event => this._itemController.handleMouseEvent(event);
     }
@@ -145,7 +145,7 @@ class WorkflowBuilderGUI
         paper.setup(canvasElementId);
         paper.view.onFrame = (event) => this._handleFrame(event);
         this.drawGrid = drawGrid;
-        this.drawGrid(Rodan.Configuration.PLUGINS['rodan-client-wfb'].GRID, paper);
+        this.drawGrid(Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].GRID, paper);
         this._handleRequestZoomReset();
     }
 
@@ -393,8 +393,8 @@ class WorkflowBuilderGUI
      */
     _handleRequestZoomIn()
     {
-        var zoom = paper.view.zoom + Rodan.Configuration.PLUGINS['rodan-client-wfb'].ZOOM_RATE;
-        paper.view.zoom = zoom < Rodan.Configuration.PLUGINS['rodan-client-wfb'].ZOOM_MAX ? zoom : Rodan.Configuration.PLUGINS['rodan-client-wfb'].ZOOM_MAX;
+        var zoom = paper.view.zoom + Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].ZOOM_RATE;
+        paper.view.zoom = zoom < Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].ZOOM_MAX ? zoom : Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].ZOOM_MAX;
     }
 
     /**
@@ -402,8 +402,8 @@ class WorkflowBuilderGUI
      */
     _handleRequestZoomOut()
     {
-        var zoom = paper.view.zoom - Rodan.Configuration.PLUGINS['rodan-client-wfb'].ZOOM_RATE;
-        paper.view.zoom = zoom > Rodan.Configuration.PLUGINS['rodan-client-wfb'].ZOOM_MIN ? zoom : Rodan.Configuration.PLUGINS['rodan-client-wfb'].ZOOM_MIN;   
+        var zoom = paper.view.zoom - Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].ZOOM_RATE;
+        paper.view.zoom = zoom > Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].ZOOM_MIN ? zoom : Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].ZOOM_MIN;   
         this._limitViewInThresholds(); // make sure we stay in bounds! 
     }
 
@@ -412,7 +412,7 @@ class WorkflowBuilderGUI
      */
     _handleRequestZoomReset()
     {
-        paper.view.zoom = Rodan.Configuration.PLUGINS['rodan-client-wfb'].ZOOM_INITIAL;
+        paper.view.zoom = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].ZOOM_INITIAL;
         this._limitViewInThresholds(); // make sure we stay in bounds!
     }
 

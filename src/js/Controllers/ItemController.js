@@ -221,7 +221,7 @@ class ItemController
             for (var i = 0; i < inputPortUrls.length; i++)
             {
                 var item = BaseItem.getAssociatedItem(inputPortUrls[i]);
-                item.setTemporaryColor(Rodan.Configuration.PLUGINS['rodan-client-wfb'].INPUTPORT_COLOR_CANDIDATE);
+                item.setTemporaryColor(Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].INPUTPORT_COLOR_CANDIDATE);
                 this._candidateInputPortItems[inputPortUrls[i]] = item;
             }
         }
@@ -274,10 +274,10 @@ class ItemController
     {
         var canvasWidth = paper.view.viewSize.width;
         var canvasHeight = paper.view.viewSize.height;
-        var workflowJobItemWidth = Rodan.Configuration.PLUGINS['rodan-client-wfb'].WORKFLOWJOB_WIDTH;
-        var workflowJobItemHeight = Rodan.Configuration.PLUGINS['rodan-client-wfb'].WORKFLOWJOB_HEIGHT;
-        var portItemWidth = Rodan.Configuration.PLUGINS['rodan-client-wfb'].PORT_WIDTH;
-        var portItemHeight = Rodan.Configuration.PLUGINS['rodan-client-wfb'].PORT_HEIGHT;
+        var workflowJobItemWidth = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].WORKFLOWJOB_WIDTH;
+        var workflowJobItemHeight = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].WORKFLOWJOB_HEIGHT;
+        var portItemWidth = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].PORT_WIDTH;
+        var portItemHeight = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'].PORT_HEIGHT;
         this._segments = {
             workflowJobItem: [
                 new paper.Point(0, 0), 
