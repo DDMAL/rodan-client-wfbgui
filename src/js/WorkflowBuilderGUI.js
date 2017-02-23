@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { drawGrid } from './Utilities/PaperUtilities';
 import BaseItem from './Items/BaseItem';
 import GUI_EVENTS from './Shared/Events';
@@ -32,6 +33,7 @@ class WorkflowBuilderGUI
      */
     initialize(options)
     { 
+        this._initializeConfiguration();
         this._workflow = options.workflow;
         this._initializeView();
         this._initializeStateMachine();
@@ -56,6 +58,55 @@ class WorkflowBuilderGUI
 ///////////////////////////////////////////////////////////////////////////////////////
 // PRIVATE METHODS - Initializers
 ///////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Checks configuration loaded.
+     */
+    _initializeConfiguration()
+    {
+        var configuration = 
+        {
+            "USER_AGENT": "rodan-standard",
+            "GRID":
+            {
+                "DIMENSION": 20,
+                "LINE_COLOR": "#606060",
+                "LINE_WIDTH": 0.5
+            },
+            "ZOOM_MAX": 3.0,
+            "ZOOM_MIN": 1.0,
+            "ZOOM_RATE": 0.05,
+            "ZOOM_INITIAL": 1.7,
+            "WORKFLOWJOB_WIDTH": 20,
+            "WORKFLOWJOB_HEIGHT": 22,
+            "PORT_WIDTH": 8,
+            "PORT_HEIGHT": 8,
+            "OUTPUTPORT_COLOR": "#00ff00",
+            "INPUTPORT_COLOR_SATISFIED": "#00ff00",
+            "INPUTPORT_COLOR_UNSATISFIED": "#ff0000",
+            "INPUTPORT_COLOR_CANDIDATE": "#00ff00",
+            "STROKE_COLOR": "#000000",
+            "FILL_COLOR": "#ccccff",
+            "WORKFLOWJOBGROUP_FILL_COLOR": "#8888ff",
+            "STROKE_WIDTH": 1,
+            "FONT_SIZE": 10,
+            "STROKE_COLOR_SELECTED": "#0000ff",
+            "STROKE_WIDTH_SELECTED": 2,
+            "CONNECTION_CIRCLE_RADIUS": 4,
+            "HOVER_TIME": 1000
+        }
+
+        // Check if our entry exists.
+        if (!Rodan.Configuration.PLUGINS['rodan-client-wfbgui'])
+        {
+            Rodan.Configuration.PLUGINS['rodan-client-wfbgui'] = {};
+        }
+
+        // Now fill in the gaps.
+        var currentConfiguration = Rodan.Configuration.PLUGINS['rodan-client-wfbgui'];
+        $.extend(configuration, currentConfiguration);
+        Rodan.Configuration.PLUGINS['rodan-client-wfbgui'] = configuration;
+    }
+
     /**
      * Initialize view.
      */
