@@ -205,7 +205,7 @@ class ItemController
      */
     createConnection(outputPortItem, inputPortItem, workflow)
     {
-        this.rodanChannel.request(Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_ADD_CONNECTION, {inputport: inputPortItem.getModel(), 
+        Rodan.CoreChannel.request(Rodan.CoreEvents.REQUEST__WORKFLOWBUILDER_ADD_CONNECTION, {inputport: inputPortItem.getModel(), 
                                                                                    outputport: outputPortItem.getModel(),
                                                                                    workflow: workflow});
     }
@@ -263,8 +263,8 @@ class ItemController
         this.guiChannel.reply(GUI_EVENTS.REQUEST__WORKFLOWBUILDER_GUI_ADD_RESOURCEDISTRIBUTOR, () => this._handleRequestAddResourceDistributor());
 
         this.rodanChannel = Radio.channel('rodan');
-        this.rodanChannel.on(Rodan.RODAN_EVENTS.EVENT__COLLECTION_ADD, options => this._handleEventModelSync(options));
-        this.rodanChannel.on(Rodan.RODAN_EVENTS.EVENT__MODEL_SYNC, options => this._handleEventModelSync(options));
+        Rodan.CoreChannel.on(Rodan.CoreEvents.EVENT__COLLECTION_ADD, options => this._handleEventModelSync(options));
+        Rodan.CoreChannel.on(Rodan.CoreEvents.EVENT__MODEL_SYNC, options => this._handleEventModelSync(options));
     }
 
     /**
@@ -456,7 +456,7 @@ class ItemController
 
         if (contextMenuData && contextMenuData.length > 0)
         {
-            Radio.channel('rodan').request(Rodan.RODAN_EVENTS.REQUEST__CONTEXTMENU_SHOW, {items: contextMenuData, 
+            Radio.channel('rodan').request(Rodan.AppEvents.REQUEST__CONTEXTMENU_SHOW, {items: contextMenuData, 
                                                                                     top: mouseEvent.event.pageY,
                                                                                     left: mouseEvent.event.pageX});
         }
@@ -491,7 +491,7 @@ class ItemController
             inputPorts.push(item.getModel());
         }
         var workflow = this.guiChannel.request(GUI_EVENTS.REQUEST__WORKFLOWBUILDER_GUI_GET_WORKFLOW);
-        this.rodanChannel.request(Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_ADD_DISTRIBUTOR, {inputports: inputPorts, workflow: workflow});
+        Rodan.CoreChannel.request(Rodan.CoreEvents.REQUEST__WORKFLOWBUILDER_ADD_DISTRIBUTOR, {inputports: inputPorts, workflow: workflow});
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////

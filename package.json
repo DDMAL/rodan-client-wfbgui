@@ -29,7 +29,7 @@
     "paper": "^0.10.2"
   },
   "peerDependencies": {
-    "rodan-client": ">=0.17.0"
+    "rodan-client-core": ">=0.1.0"
   },
   "engines" :  { 
     "node" : ">=4.2.6" 

@@ -408,7 +408,7 @@ class BaseItem extends paper.Path
         this.rodanChannel = Radio.channel('rodan');
         if (options && options.model)
         {
-            this.rodanChannel.on(Rodan.RODAN_EVENTS.EVENT__MODEL_SYNC + options.model.get('url'), options => this._handleEventModelSync(options));
+            Rodan.CoreChannel.on(Rodan.CoreEvents.EVENT__MODEL_SYNC + options.model.get('url'), options => this._handleEventModelSync(options));
         }
     }
 

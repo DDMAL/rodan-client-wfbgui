@@ -60,7 +60,7 @@ class InputPortItem extends BasePortItem
      */
     isSatisfied()
     {
-        var resourceAssignments = this.rodanChannel.request(Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_GET_RESOURCEASSIGNMENTS, {inputport: this.getModel()});
+        var resourceAssignments = Rodan.CoreChannel.request(Rodan.CoreEvents.REQUEST__WORKFLOWBUILDER_GET_RESOURCEASSIGNMENTS, {inputport: this.getModel()});
         return this.hasConnectionItem() || resourceAssignments.length > 0;
     }
 
@@ -108,7 +108,7 @@ class InputPortItem extends BasePortItem
         if (!this.hasConnectionItem())
         {
             var workflow = this.guiChannel.request(GUI_EVENTS.REQUEST__WORKFLOWBUILDER_GUI_GET_WORKFLOW);
-            menuItems.push({label: 'Assign Resources', radiorequest: Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_SHOW_RESOURCEASSIGNMENT_VIEW, options: {inputport: this.getModel(), workflow: workflow}});
+            menuItems.push({label: 'Assign Resources', radiorequest: Rodan.AppEvents.REQUEST__WORKFLOWBUILDER_SHOW_RESOURCEASSIGNMENT_VIEW, options: {inputport: this.getModel(), workflow: workflow}});
         }
         return menuItems;
     }
@@ -140,7 +140,7 @@ class InputPortItem extends BasePortItem
         if (!this.hasConnectionItem())
         {
             var workflow = this.guiChannel.request(GUI_EVENTS.REQUEST__WORKFLOWBUILDER_GUI_GET_WORKFLOW);
-            this.rodanChannel.request(Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_SHOW_RESOURCEASSIGNMENT_VIEW, {inputport: this.getModel(), workflow: workflow});
+            this.rodanChannel.request(Rodan.AppEvents.REQUEST__WORKFLOWBUILDER_SHOW_RESOURCEASSIGNMENT_VIEW, {inputport: this.getModel(), workflow: workflow});
         }
     }
 }

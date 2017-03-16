@@ -24,7 +24,7 @@ class WorkflowBuilderGUI
     {
         this._oldMouseEvent = window.MouseEvent; // FIX: paper.js stupidly redefines 
         this._workflow = null;
-        Radio.channel('rodan').on(Rodan.RODAN_EVENTS.EVENT__WORKFLOWBUILDER_SELECTED, (options) => this.initialize(options));
+        Rodan.CoreChannel.on(Rodan.CoreEvents.EVENT__WORKFLOWBUILDER_SELECTED, (options) => this.initialize(options));
     }
     
     /**
@@ -44,7 +44,7 @@ class WorkflowBuilderGUI
         this._initializeGui();
 
         // We have to clear the updater.
-        Radio.channel('rodan').request(Rodan.RODAN_EVENTS.REQUEST__UPDATER_CLEAR);
+        Rodan.CoreChannel.request(Rodan.CoreEvents.REQUEST__UPDATER_CLEAR);
     }
 
     /**
@@ -113,11 +113,11 @@ class WorkflowBuilderGUI
     _initializeView()
     {
         var view = new LayoutViewWorkflowBuilder({model: this.getWorkflow()});
-        Radio.channel('rodan').request(Rodan.RODAN_EVENTS.REQUEST__MAINREGION_SHOW_VIEW, {view: view});
-        this._menuItems = [{label: 'Edit Name/Description', radiorequest: Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_SHOW_WORKFLOW_VIEW, options: {workflow: this.getWorkflow()}},
-                           {label: 'Add Job', radiorequest: Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_SHOW_JOBCOLLECTION_VIEW, options: {workflow: this.getWorkflow()}},
-                           {label: 'Import Workflow', radiorequest: Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_SHOW_WORKFLOWCOLLECTION_VIEW, options: {workflow: this.getWorkflow()}},
-                           {label: 'Run', radiorequest: Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_CREATE_WORKFLOWRUN, options: {workflow: this.getWorkflow()}}]; 
+        Radio.channel('rodan').request(Rodan.AppEvents.REQUEST__MAINREGION_SHOW_VIEW, {view: view});
+        this._menuItems = [{label: 'Edit Name/Description', radiorequest: Rodan.AppEvents.REQUEST__WORKFLOWBUILDER_SHOW_WORKFLOW_VIEW, options: {workflow: this.getWorkflow()}},
+                           {label: 'Add Job', radiorequest: Rodan.AppEvents.REQUEST__WORKFLOWBUILDER_SHOW_JOBCOLLECTION_VIEW, options: {workflow: this.getWorkflow()}},
+                           {label: 'Import Workflow', radiorequest: Rodan.AppEvents.REQUEST__WORKFLOWBUILDER_SHOW_WORKFLOWCOLLECTION_VIEW, options: {workflow: this.getWorkflow()}}/*,
+                           {label: 'Run', radiorequest: Rodan.CoreEvents.REQUEST__WORKFLOWBUILDER_CREATE_WORKFLOWRUN, options: {workflow: this.getWorkflow()}}*/]; 
     }
 
     /**
@@ -139,7 +139,7 @@ class WorkflowBuilderGUI
     _initializeRadio()
     {
         this.rodanChannel = Radio.channel('rodan');
-        this.rodanChannel.on(Rodan.RODAN_EVENTS.EVENT__MODEL_SYNC, options => this._handleEventModelSync(options));
+        Rodan.CoreChannel.on(Rodan.CoreEvents.EVENT__MODEL_SYNC, options => this._handleEventModelSync(options));
 
         this.guiChannel = Radio.channel('rodan-client_gui');
         this.guiChannel.on(GUI_EVENTS.EVENT__WORKFLOWBUILDER_GUI_DESTROY, () => this._handleGuiDestroy());
@@ -291,7 +291,7 @@ class WorkflowBuilderGUI
                 // If right-click, open context menu.
                 if (event.event.button === 2)
                 {
-                    Radio.channel('rodan').request(Rodan.RODAN_EVENTS.REQUEST__CONTEXTMENU_SHOW,
+                    Radio.channel('rodan').request(Rodan.AppEvents.REQUEST__CONTEXTMENU_SHOW,
                                               {items: this._menuItems, top: event.event.pageY, left: event.event.pageX});
                 }
             }
@@ -355,7 +355,7 @@ class WorkflowBuilderGUI
 
             // Get satisfiable InputPorts.
             var outputPortItem = this._itemController.getOutputPortItemForConnection();
-            var candidateInputPortUrls = Radio.channel('rodan').request(Rodan.RODAN_EVENTS.REQUEST__WORKFLOWBUILDER_GET_SATISFYING_INPUTPORTS,
+            var candidateInputPortUrls = Rodan.CoreChannel.request(Rodan.CoreEvents.REQUEST__WORKFLOWBUILDER_GET_SATISFYING_INPUTPORTS,
                                                                      {workflow: this._workflow, outputport: outputPortItem.getModel()});
             this._itemController.setInputPortCandidates(candidateInputPortUrls);
         }
